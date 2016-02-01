@@ -123,7 +123,6 @@ module.exports.verify = function (email, options, callback) {
                               success = true;
                           }
                           stage++;
-                          response = "";
                           // close the connection cleanly.
                           if(!ended) socket.write("QUIT\r\n");
                           break;
@@ -145,6 +144,7 @@ module.exports.verify = function (email, options, callback) {
             calledback = true;
             callback(null, {
               success: success,
+              response: response,
               info: (email + " is " + (success ? "a valid" : "an invalid") + " address"),
               addr: email });
           }
